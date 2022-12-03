@@ -10,11 +10,11 @@ public class RucksackReorganization {
         final Scanner scanner = new Scanner(file);
         final CharListManager charListManager = new CharListManager();
         int sum = 0;
-        int lines = 1;
+        int lines = 0;
 
-        while (scanner.hasNext() && lines < 300) {
+        while (scanner.hasNextLine()) {
             String line = scanner.nextLine();
-            String firstHalf = line.substring(0, line.length() / 2 - 1);
+            String firstHalf = line.substring(0, line.length() / 2);
             String secondHalf = line.substring(line.length() / 2);
             char commonChar;
             int charValue = 0;
@@ -25,16 +25,12 @@ public class RucksackReorganization {
                     if (firstHalf.charAt(i) == secondHalf.charAt(j)) {
                         commonChar = secondHalf.charAt(j);
                         charValue = charListManager.characterList.indexOf(commonChar) + 1;
-                        System.out.println(lines + " Line " + line + " Common char " + commonChar + " Value " + charValue);
                         continueSearch = false;
-                        System.out.println("Sum: " + sum);
                     }
                 }
             }
-            lines++;
             sum += charValue;
         }
         System.out.println("Sum of priorities of the items: " + sum);
-        System.out.println("Lines: " + lines);
     }
 }
